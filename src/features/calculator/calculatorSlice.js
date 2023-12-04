@@ -30,22 +30,6 @@ function appendNumber (expression, input) {
         : expression.toSpliced(length - 1, 1, input)
 }
 
-// function add(arr) {
-//     return arr.forEach((element, index, array) => {
-//         if (element === "+") {
-//             array.splice(index - 1, 3, array[index - 1] + array[index +1])
-//         }
-//     });
-// }
-
-// function sub(arr) {
-//     return arr.forEach((element, index, array) => {
-//         if (element === "-") {
-//             array.splice(index - 1, 3, array[index - 1] - array[index + 1])
-//         }
-//     });
-// }
-
 function multDiv(array) {
     for (let i = 1; i < array.length; i += 2) {
         if (array[i] === "*") {
@@ -114,8 +98,9 @@ export const calculatorSlice = createSlice({
             result = addSub(result);
 
             let [finalValue] = [...result];
+            finalValue = parseFloat(finalValue.toFixed(4))
 
-            state.expression = [parseFloat(finalValue.toFixed(4))];
+            state.expression = [finalValue];
             state.input = finalValue.toString();
         }
     }
